@@ -281,6 +281,11 @@
         border-color: rgba(138, 180, 255, 0.4);
       }
 
+      .menu-item:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
       .menu-item-hint {
         font-size: 0.78rem;
         font-weight: 500;
@@ -561,6 +566,14 @@
         cursor: pointer;
         text-align: left;
         min-width: 0;
+      }
+
+      .layer-visibility-toggle {
+        width: 16px;
+        height: 16px;
+        accent-color: rgba(59, 130, 246, 0.9);
+        cursor: pointer;
+        flex-shrink: 0;
       }
 
       .layer-item-button:hover {
@@ -1047,7 +1060,7 @@
         position: fixed;
         top: 0;
         right: 0;
-        width: 980px;
+        width: 860px;
         max-width: 96vw;
         height: 100%;
         background: #0f1520;
@@ -1068,14 +1081,32 @@
         pointer-events: auto;
       }
 
+      .scene-panel.compact {
+        width: 460px;
+      }
+
+      .scene-panel.compact .scene-layout {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .scene-panel.compact .scene-list-panel {
+        width: 100%;
+        max-height: 240px;
+      }
+
+      .scene-panel.compact .scene-detail-panel {
+        width: 100%;
+      }
+
       .scene-panel__header {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 20px;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        padding: 16px 20px 12px;
         border-bottom: 1px solid rgba(138, 180, 255, 0.14);
-        gap: 12px;
-        flex-wrap: wrap;
+        gap: 10px;
       }
 
       .scene-panel__body {
@@ -1084,17 +1115,68 @@
         padding: 12px 16px 20px;
       }
 
+      .scene-panel__title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
       .scene-header-meta {
         display: flex;
         flex-direction: column;
         gap: 6px;
       }
 
+      .scene-panel-tools {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
       .scene-panel-actions {
         display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .scene-action-group {
+        display: inline-flex;
+        align-items: center;
         gap: 8px;
         flex-wrap: wrap;
-        align-items: center;
+      }
+
+      .scene-action-group--export {
+        margin-left: auto;
+      }
+
+      .scene-action-btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+
+      .scene-panel-actions .btn-secondary.scene-action-btn {
+        padding: 9px 14px;
+      }
+
+      .scene-compact-btn {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+      }
+
+      .scene-compact-label--expand {
+        display: none;
+      }
+
+      .scene-panel.compact .scene-compact-label--expand {
+        display: inline;
+      }
+
+      .scene-panel.compact .scene-compact-label--compact {
+        display: none;
       }
 
       .scene-layout {
@@ -1122,6 +1204,38 @@
         gap: 8px;
       }
 
+      .scene-list-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .scene-search-input {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .scene-auto-apply {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: rgba(230, 237, 247, 0.8);
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .scene-auto-apply input {
+        width: 14px;
+        height: 14px;
+        accent-color: #3b82f6;
+      }
+
       .scene-list-title {
         display: flex;
         align-items: center;
@@ -1143,12 +1257,37 @@
       .scene-list-meta {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
       }
 
       .scene-list-selected {
         font-size: 0.72rem;
         color: rgba(148, 163, 184, 0.8);
+      }
+
+      .scene-delete-inline {
+        display: none;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(248, 113, 113, 0.4);
+        background: rgba(248, 113, 113, 0.12);
+        color: rgba(254, 202, 202, 0.95);
+        font-size: 0.7rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .scene-delete-inline:hover {
+        border-color: rgba(248, 113, 113, 0.6);
+        background: rgba(248, 113, 113, 0.2);
+        color: #fee2e2;
+      }
+
+      .scene-delete-inline:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
       }
 
       .scene-list-body {
@@ -1642,6 +1781,8 @@
         border-radius: 10px;
         border: 1px solid rgba(138, 180, 255, 0.12);
         background: rgba(10, 16, 26, 0.8);
+        flex: 1;
+        min-height: 0;
       }
 
       .selected-highlights.collapsed .selected-highlights-body {
@@ -1675,7 +1816,9 @@
       }
 
       .selected-highlights-body {
-        max-height: 160px;
+        flex: 1;
+        min-height: 0;
+        max-height: none;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
@@ -1752,6 +1895,29 @@
         padding: 0;
         background: transparent;
         cursor: pointer;
+      }
+
+      .selected-highlight-remove {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        border: 1px solid rgba(248, 113, 113, 0.35);
+        background: rgba(248, 113, 113, 0.12);
+        color: rgba(254, 202, 202, 0.9);
+        font-size: 0.85rem;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+
+      .selected-highlight-remove:hover {
+        border-color: rgba(248, 113, 113, 0.6);
+        background: rgba(248, 113, 113, 0.2);
+        color: #fee2e2;
       }
 
       .selected-highlights-actions {
@@ -1881,6 +2047,8 @@
 
       .highlights-tab {
         padding: 12px;
+        display: flex;
+        flex-direction: column;
       }
 
       .search-box {
@@ -2152,7 +2320,7 @@
       }
 
     </style>
-    <script type="module" crossorigin src="/coco-viewer-pages/assets/main-CkTkWW0f.js"></script>
+    <script type="module" crossorigin src="/coco-viewer-pages/assets/main-Bib9SEot.js"></script>
   </head>
   <body>
     <noscript class="noscript-banner">
@@ -2572,16 +2740,71 @@
     <input id="scene-import-input" type="file" accept=".json,application/json" hidden />
     <div id="scene-panel" class="scene-panel" aria-hidden="true">
         <div class="scene-panel__header">
-          <div class="scene-header-meta">
-            <p class="panel-eyebrow" data-i18n="scene.panelEyebrow">Scene Notes</p>
-            <h3 class="panel-title" data-i18n="scene.panelTitle">Scene Snapshots</h3>
+          <div class="scene-panel__title-row">
+            <div class="scene-header-meta">
+              <p class="panel-eyebrow" data-i18n="scene.panelEyebrow">Scene Notes</p>
+              <h3 class="panel-title" data-i18n="scene.panelTitle">Scene Snapshots</h3>
+            </div>
+            <div class="scene-panel-tools">
+              <button
+                id="scene-compact-btn"
+                class="btn-ghost scene-compact-btn"
+                type="button"
+                data-i18n-title="scene.compactToggle"
+                data-i18n-aria-label="scene.compactToggle"
+                aria-pressed="false"
+              >
+                <span class="scene-compact-label scene-compact-label--compact" data-i18n="scene.compactCollapse">좁게 보기</span>
+                <span class="scene-compact-label scene-compact-label--expand" data-i18n="scene.compactExpand">넓게 보기</span>
+              </button>
+              <button id="scene-close-btn" class="icon-button" type="button" data-i18n-aria-label="scene.close">×</button>
+            </div>
           </div>
           <div class="scene-panel-actions">
-            <button id="scene-save-btn" class="btn-secondary" type="button" data-i18n="scene.save">Scene 저장</button>
-            <button id="scene-import-btn" class="btn-ghost" type="button" data-i18n="scene.import">불러오기</button>
-            <button id="scene-export-one-btn" class="btn-ghost" type="button" data-i18n="scene.exportSelected">선택 내보내기</button>
-            <button id="scene-export-all-btn" class="btn-ghost" type="button" data-i18n="scene.exportAll">내보내기</button>
-            <button id="scene-close-btn" class="icon-button" type="button" data-i18n-aria-label="scene.close">×</button>
+            <div class="scene-action-group">
+              <button id="scene-save-btn" class="btn-secondary scene-action-btn" type="button" data-i18n="scene.save">Scene 저장</button>
+              <button id="scene-import-btn" class="btn-ghost scene-action-btn" type="button" data-i18n="scene.import">불러오기</button>
+            </div>
+            <div class="scene-action-group scene-action-group--export">
+              <div id="scene-export-menu" class="menu">
+                <button
+                  id="scene-export-menu-btn"
+                  class="btn-ghost scene-action-btn menu-button"
+                  type="button"
+                  aria-haspopup="menu"
+                  aria-expanded="false"
+                  aria-controls="scene-export-menu-panel"
+                  data-i18n-aria-label="scene.exportMenuAria"
+                >
+                  <span data-i18n="scene.exportMenu">내보내기</span>
+                  <svg
+                    class="menu-caret"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+                <div
+                  id="scene-export-menu-panel"
+                  class="menu-panel"
+                  role="menu"
+                  data-i18n-aria-label="scene.exportMenuAria"
+                  aria-hidden="true"
+                >
+                  <button id="scene-export-one-btn" class="menu-item" type="button" role="menuitem">
+                    <span data-i18n="scene.exportSelected">선택 내보내기</span>
+                  </button>
+                  <button id="scene-export-all-btn" class="menu-item" type="button" role="menuitem">
+                    <span data-i18n="scene.exportAll">전체 내보내기</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       <div class="scene-panel__body">
@@ -2592,10 +2815,30 @@
                 <span data-i18n="scene.listTitle">Scenes</span>
                 <span class="scene-list-meta">
                   <span id="scene-selected-count" class="scene-list-selected">선택 0</span>
+                  <button
+                    id="scene-delete-selected-inline"
+                    class="scene-delete-inline"
+                    type="button"
+                    data-i18n="scene.deleteSelected"
+                  >
+                    선택 삭제
+                  </button>
                   <span id="scene-count" class="scene-list-count">0</span>
                 </span>
               </div>
-              <input id="scene-search" class="search-input" type="text" data-i18n-placeholder="scene.searchPlaceholder" placeholder="검색 또는 태그 필터" />
+              <div class="scene-list-controls">
+                <input
+                  id="scene-search"
+                  class="search-input scene-search-input"
+                  type="text"
+                  data-i18n-placeholder="scene.searchPlaceholder"
+                  placeholder="검색 또는 태그 필터"
+                />
+                <label class="scene-auto-apply">
+                  <input id="scene-auto-apply" type="checkbox" />
+                  <span data-i18n="scene.autoApply">클릭 시 즉시 복원</span>
+                </label>
+              </div>
             </div>
             <div class="scene-list-body">
               <div id="scene-list" class="scene-list"></div>
