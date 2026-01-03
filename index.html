@@ -2644,7 +2644,7 @@
       }
 
     </style>
-    <script type="module" crossorigin src="/coco-viewer-pages/assets/main-CDuF5x3x.js"></script>
+    <script type="module" crossorigin src="/coco-viewer-pages/assets/main-DSpWxxsm.js"></script>
   </head>
   <body>
     <noscript class="noscript-banner">
@@ -3141,6 +3141,12 @@
                   <button id="scene-export-all-btn" class="menu-item" type="button" role="menuitem">
                     <span data-i18n="scene.exportAll">전체 내보내기</span>
                   </button>
+                  <button id="scene-export-doc-selected-btn" class="menu-item" type="button" role="menuitem">
+                    <span data-i18n="scene.exportDocumentSelected">문서 내보내기(선택)</span>
+                  </button>
+                  <button id="scene-export-doc-all-btn" class="menu-item" type="button" role="menuitem">
+                    <span data-i18n="scene.exportDocumentAll">문서 내보내기(전체)</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -3226,6 +3232,9 @@
               </div>
               <div class="scene-detail-actions">
                 <button id="scene-copy-btn" class="btn-ghost" type="button" data-i18n="scene.copy">클립보드 복사</button>
+                <button id="scene-export-doc-btn" class="btn-ghost" type="button" data-i18n="scene.exportDocument">
+                  문서 내보내기
+                </button>
                 <button id="scene-update-btn" class="btn-secondary" type="button" data-i18n="scene.update">저장</button>
                 <button id="scene-delete-btn" class="btn-ghost" type="button" data-i18n="scene.delete">삭제</button>
               </div>
@@ -3236,11 +3245,33 @@
     </div>
     <div id="scene-export-modal" class="scene-modal" aria-hidden="true">
       <div class="scene-modal-card" role="dialog" aria-modal="true" data-i18n-aria-label="scene.exportModal.title">
-        <div class="scene-modal-title" data-i18n="scene.exportModal.title">썸네일 포함 여부</div>
-        <p class="scene-modal-description" data-i18n="scene.exportModal.description">썸네일을 포함하여 내보낼까요?</p>
+        <div class="scene-modal-title" data-i18n="scene.exportModal.title">썸네일 내보내기</div>
+        <p class="scene-modal-description" data-i18n="scene.exportModal.description">
+          고해상도는 화면을 다시 캡처해 시간이 더 걸릴 수 있습니다.
+        </p>
         <div class="scene-modal-actions">
           <button id="scene-export-exclude" class="btn-ghost" type="button" data-i18n="scene.exportModal.exclude">썸네일 제외</button>
-          <button id="scene-export-include" class="btn-secondary" type="button" data-i18n="scene.exportModal.include">썸네일 포함</button>
+          <button id="scene-export-include" class="btn-secondary" type="button" data-i18n="scene.exportModal.include">기본 썸네일 포함</button>
+          <button id="scene-export-high-res" class="btn-ghost" type="button" data-i18n="scene.exportModal.highRes">고해상도 포함</button>
+        </div>
+      </div>
+    </div>
+    <div id="scene-document-export-modal" class="scene-modal" aria-hidden="true">
+      <div class="scene-modal-card" role="dialog" aria-modal="true" data-i18n-aria-label="scene.documentExportModal.title">
+        <div class="scene-modal-title" data-i18n="scene.documentExportModal.title">문서 썸네일 해상도</div>
+        <p class="scene-modal-description" data-i18n="scene.documentExportModal.description">
+          고해상도는 현재 화면을 다시 캡처해 문서 크기가 커질 수 있습니다.
+        </p>
+        <div class="scene-modal-actions">
+          <button id="scene-document-export-cancel" class="btn-ghost" type="button" data-i18n="scene.documentExportModal.cancel">
+            취소
+          </button>
+          <button id="scene-document-export-default" class="btn-ghost" type="button" data-i18n="scene.documentExportModal.default">
+            기본(저용량)
+          </button>
+          <button id="scene-document-export-high-res" class="btn-secondary" type="button" data-i18n="scene.documentExportModal.highRes">
+            고해상도 포함
+          </button>
         </div>
       </div>
     </div>
