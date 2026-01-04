@@ -331,6 +331,38 @@
         color: rgba(226, 232, 240, 0.95);
       }
 
+      .info-panel-code {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        padding: 8px 10px;
+        margin-top: 4px;
+        overflow-x: auto;
+      }
+
+      .info-panel-code code {
+        font-family: 'SF Mono', Monaco, Consolas, monospace;
+        font-size: 0.75rem;
+        color: #93c5fd;
+        white-space: nowrap;
+      }
+
+      .info-panel-link {
+        color: #60a5fa;
+        text-decoration: none;
+        font-size: 0.8rem;
+        margin-top: 2px;
+      }
+
+      .info-panel-link:hover {
+        text-decoration: underline;
+      }
+
+      .info-panel-note {
+        font-size: 0.78rem;
+        color: rgba(251, 191, 36, 0.9);
+        margin-top: 4px;
+      }
+
       .info-panel-divider {
         height: 1px;
         width: 100%;
@@ -1469,6 +1501,31 @@
       .scene-list-selected {
         font-size: 0.74rem;
         color: var(--scene-muted);
+      }
+
+      .scene-select-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(125, 211, 252, 0.35);
+        background: rgba(56, 189, 248, 0.12);
+        color: #bae6fd;
+        font-size: 0.7rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .scene-select-all:hover {
+        border-color: rgba(125, 211, 252, 0.55);
+        background: rgba(56, 189, 248, 0.2);
+        color: #e0f2fe;
+      }
+
+      .scene-select-all:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
       }
 
       .scene-delete-inline {
@@ -2644,7 +2701,7 @@
       }
 
     </style>
-    <script type="module" crossorigin src="/coco-viewer-pages/assets/main-DSpWxxsm.js"></script>
+    <script type="module" crossorigin src="/coco-viewer-pages/assets/main-R1oVF-rG.js"></script>
   </head>
   <body>
     <noscript class="noscript-banner">
@@ -2799,8 +2856,18 @@
                   </div>
                   <div class="info-panel-divider" role="presentation"></div>
                   <div class="info-panel-section">
+                    <strong data-i18n="infoPanel.mcp.title">MCP 연동</strong>
+                    <div data-i18n="infoPanel.mcp.body">Claude Code 등 MCP 클라이언트에서 뷰어를 제어할 수 있습니다.</div>
+                    <div class="info-panel-code">
+                      <code>claude mcp add coco-viewer -- npx coco-viewer-mcp</code>
+                    </div>
+                    <a href="https://www.npmjs.com/package/coco-viewer-mcp" target="_blank" rel="noopener" class="info-panel-link" data-i18n="infoPanel.mcp.link">자세히 보기 →</a>
+                  </div>
+                  <div class="info-panel-divider" role="presentation"></div>
+                  <div class="info-panel-section">
                     <strong data-i18n="infoPanel.privacy.title">개인정보 보호</strong>
                     <div data-i18n="infoPanel.privacy.body">모든 파일 처리는 사용자의 브라우저에서 로컬로 수행됩니다. 어떠한 데이터도 외부 서버로 전송되지 않습니다.</div>
+                    <div class="info-panel-note" data-i18n="infoPanel.privacy.mcpNote">단, MCP 연동 시 뷰어 데이터가 LLM 서비스로 전송될 수 있습니다.</div>
                   </div>
                   <div class="info-panel-divider" role="presentation"></div>
                   <div class="info-panel-section">
@@ -3160,6 +3227,7 @@
                 <span data-i18n="scene.listTitle">Scenes</span>
                 <span class="scene-list-meta">
                   <span id="scene-selected-count" class="scene-list-selected">선택 0</span>
+                  <button id="scene-select-all-btn" class="scene-select-all" type="button">전체 선택</button>
                   <button
                     id="scene-delete-selected-inline"
                     class="scene-delete-inline"
